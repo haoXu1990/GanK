@@ -1,11 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+
+    <!--brownTheme-->
+
+    <style name="BrownTheme" parent="AppTheme">
+        <item name= "colorPrimary">@color/colorBrownPrimary</item>
+        <item name= "colorPrimaryDark">@color/colorBrownPrimaryDark</item>
+        <item name= "colorAccent">@color/colorBrownPrimaryDark</item>
+        <item name= "menuBackground">@drawable/brown_background</item>
+
+        <!--<item name="md_title_color">@color/colorBrownPrimary</item>-->
+        <!--<item name="md_link_color">@color/colorBrownPrimary</item>-->
+        <!--<item name="md_positive_color">@color/colorBrownPrimary</item>-->
+
     </style>
 
 </resources>
