@@ -1,17 +1,25 @@
 package com.xuhao.gank.activitys;
 
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.xuhao.gank.R;
 import com.xuhao.gank.fragments.AllFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private ImageView mAvatar;
 
 
     // 管理器
@@ -25,18 +33,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
 
-        mFragmentManager = getSupportFragmentManager();
-
-
+        initView();
 
         switchFragment("all");
 
     }
+
+    public void  initView(){
+
+        View view = LayoutInflater.from(this).inflate(R.layout.activity_main,null);
+
+
+        mAvatar = view.findViewById(R.id.avatar);
+
+        // 获取Fragment管理器
+        mFragmentManager = getSupportFragmentManager();
+
+
+        // 设置头像默认图片
+        Glide.with(MainActivity.this)
+                .load(R.mipmap.avatar)
+                .into(mAvatar);
+
+    }
+
 
     public void switchFragment(String name){
 

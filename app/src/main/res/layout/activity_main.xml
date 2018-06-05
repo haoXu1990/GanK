@@ -8,19 +8,101 @@
     tools:context=".activitys.MainActivity"
     android:background="@color/colorBrownPrimary">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="160dp"
-        android:orientation="vertical"
-        android:id="@+id/top_menu">
-        
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="80dp"
-            android:layout_height="80dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:orientation="vertical"
+            android:id="@+id/top_menu">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="我我我我我"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/top_menu"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/all"
+                    style="@style/MenuStyle"
+                    android:text="全部"/>
+                <TextView
+                    android:id="@+id/fuli"
+                    style="@style/MenuStyle"
+                    android:text="福利"/>
+
+                <TextView
+                    android:id="@+id/android"
+                    style="@style/MenuStyle"
+                    android:text="Android"/>
+
+                <TextView
+                    android:id="@+id/ios"
+                    style="@style/MenuStyle"
+                    android:text="iOS"/>
+
+                <TextView
+                    android:id="@+id/video"
+                    style="@style/MenuStyle"
+                    android:text="休息视频"/>
+
+                <TextView
+                    android:id="@+id/front"
+                    style="@style/MenuStyle"
+                    android:text="前端"/>
+
+                <TextView
+                    android:id="@+id/resource"
+                    style="@style/MenuStyle"
+                    android:text="拓展资源"/>
+
+                <TextView
+                    android:id="@+id/app"
+                    style="@style/MenuStyle"
+                    android:text="APP"/>
+
+
+                <TextView
+                    android:id="@+id/more"
+                    style="@style/MenuStyle"
+                    android:text="瞎推"/>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+
+    </RelativeLayout>
 
 
     <LinearLayout
