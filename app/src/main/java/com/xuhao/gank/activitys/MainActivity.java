@@ -1,31 +1,59 @@
 package com.xuhao.gank.activitys;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.google.gson.reflect.TypeToken;
 import com.xuhao.gank.R;
+import com.xuhao.gank.bean.GanHuo;
 import com.xuhao.gank.fragments.AllFragment;
+import com.xuhao.gank.http.HttpRespons;
+import com.xuhao.gank.http.RequstManger;
+
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private ImageView mAvatar;
 
+    private ArrayList<GanHuo> mGanhuos = new ArrayList<>();
 
     // 管理器
     private FragmentManager mFragmentManager;
 
     String mCurrentFragmentTag;
+
+    RequestOptions mOptions;
+
+
 
 
     @Override
@@ -38,22 +66,50 @@ public class MainActivity extends AppCompatActivity {
 
         switchFragment("all");
 
+        loadData();
+
+    }
+
+
+    public void loadData(){
+
+        String url = "http://gank.io/api/data/福利/1/1";
+
+
+        RequstManger.shareManager().getData(url, new HttpRespons<List<GanHuo>>(new TypeToken<ArrayList<GanHuo>>(){}.getType()) {
+            @Override
+            public void onError(String msg) {
+
+
+            }
+
+            @Override
+            public void onSuccess(List<GanHuo> ganHuo) {
+
+                Log.v("ganHuo", ganHuo.toString());
+            }
+        });
+
+
     }
 
     public void  initView(){
 
-        View view = LayoutInflater.from(this).inflate(R.layout.activity_main,null);
-
-
-        mAvatar = view.findViewById(R.id.avatar);
+        mAvatar = findViewById(R.id.avatar);
 
         // 获取Fragment管理器
         mFragmentManager = getSupportFragmentManager();
 
 
+
+        mOptions = new RequestOptions().circleCrop()
+                .transforms(new CenterCrop(), new RoundedCorners(40));
+
         // 设置头像默认图片
-        Glide.with(MainActivity.this)
-                .load(R.mipmap.avatar)
+        Glide.with(this)
+                .load(R.drawable.avatar)
+                .apply(mOptions)
+                .transition(withCrossFade())
                 .into(mAvatar);
 
     }

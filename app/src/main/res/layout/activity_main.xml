@@ -10,7 +10,6 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
 
@@ -37,11 +36,15 @@
                 android:text="我我我我我"/>
 
         </LinearLayout>
+        
+        
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/top_menu"
+            android:layout_above="@+id/bottom_menu"
+            android:id="@+id/leftScrollView"
             >
 
             <LinearLayout
@@ -98,9 +101,23 @@
 
 
         </ScrollView>
+        
+        
+        <LinearLayout
+            android:id="@+id/bottom_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MenuStyle"
+                android:text="关于"/>
 
-
+        </LinearLayout>
+        
 
     </RelativeLayout>
 
@@ -110,9 +127,9 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/container"
             android:background="@color/colorPrimaryDark">
 
         </FrameLayout>

@@ -18,4 +18,14 @@ public class AllFragment  extends Fragment {
 
         return inflater.inflate(R.layout.item_common, container, false);
     }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
+
+    }
 }
