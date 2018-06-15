@@ -30,7 +30,6 @@ public class Alladapter extends BaseQuickAdapter<GanHuo, BaseViewHolder> {
                 .into((ImageView) helper.getView(R.id.iv_fuli));
 
 
-        Log.v("AAAA", item.getUrl());
 
     }
 

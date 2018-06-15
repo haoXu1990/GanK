@@ -109,12 +109,24 @@ public class AllFragment  extends Fragment  {
                 mRefrshing = true;
                 Log.v("allll", "SwipeRefreshLayout:下拉刷新");
 
+                page = 1;
                 // 这里加载最新数据
                 loadData();
             }
         });
 
 
+
+        mAlladapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+
+                page++;
+
+                // 这里加载最新数据
+                loadData();
+            }
+        }, mlistView);
 
 
 
@@ -148,6 +160,7 @@ public class AllFragment  extends Fragment  {
 
         // 关闭下拉刷新
         mSwipeRefreshLayout.setRefreshing(false);
+        mAlladapter.loadMoreComplete();
 
         if (mRefrshing){
             mAlladapter.setNewData(ganhuos);
