@@ -1,41 +1,22 @@
 package com.xuhao.gank.activitys;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.drawable.AdaptiveIconDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-import com.google.gson.reflect.TypeToken;
 import com.xuhao.gank.R;
 import com.xuhao.gank.bean.GanHuo;
 import com.xuhao.gank.fragments.AllFragment;
-import com.xuhao.gank.http.HttpRespons;
-import com.xuhao.gank.http.RequstManger;
 
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -55,43 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         initView();
 
         switchFragment("all");
-
-        loadData();
-
     }
 
-
-    public void loadData(){
-
-        String url = "http://gank.io/api/data/福利/1/1";
-
-
-        RequstManger.shareManager().getData(url, new HttpRespons<List<GanHuo>>(new TypeToken<ArrayList<GanHuo>>(){}.getType()) {
-            @Override
-            public void onError(String msg) {
-
-
-            }
-
-            @Override
-            public void onSuccess(List<GanHuo> ganHuo) {
-
-                Log.v("ganHuo", ganHuo.toString());
-            }
-        });
-
-
-    }
 
     public void  initView(){
 
