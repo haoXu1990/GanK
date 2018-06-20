@@ -14,14 +14,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.blankj.utilcode.util.ConvertUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.reflect.TypeToken;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.IIcon;
 import com.xuhao.gank.R;
 import com.xuhao.gank.adapter.Alladapter;
 import com.xuhao.gank.bean.GanHuo;
 import com.xuhao.gank.http.HttpRespons;
 import com.xuhao.gank.http.RequstManger;
+import com.xuhao.gank.utils.ThemeUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -171,6 +176,16 @@ public class AllFragment  extends Fragment  {
 
         mRefrshing = false;
 
+    }
+
+
+    private void setIconDrawable(TextView view, IIcon icon) {
+        view.setCompoundDrawablesWithIntrinsicBounds(new IconicsDrawable(getActivity())
+                        .icon(icon)
+                        .color(ThemeUtils.getThemeColor(getActivity(), R.attr.colorPrimary))
+                        .sizeDp(14),
+                null, null, null);
+        view.setCompoundDrawablePadding(ConvertUtils.dp2px(5));
     }
 
     static class MyHandler extends Handler {
