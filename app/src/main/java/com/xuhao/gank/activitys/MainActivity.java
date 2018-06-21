@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.bumptech.glide.Glide;
@@ -18,13 +21,18 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.wuhenzhizao.titlebar.utils.AppUtils;
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 import com.xuhao.gank.R;
 import com.xuhao.gank.bean.GanHuo;
 import com.xuhao.gank.fragments.AllFragment;
 import com.xuhao.gank.utils.ThemeUtils;
+import com.xuhao.gank.widget.ResideLayout;
 
 
 import java.util.ArrayList;
+
+import javax.crypto.Mac;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.front) TextView mFront;
     @BindView(R.id.resource) TextView mResource;
     @BindView(R.id.app) TextView mApp;
+
+    @BindView(R.id.icon_titlebar) ImageView mIcon;
+    @BindView(R.id.tv_titlebar) TextView mTtitlebar;
+    @BindView(R.id.resideLayout) ResideLayout mResideLayout;
+
+
+
 
 
 
@@ -62,25 +77,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 绑定View
         ButterKnife.bind(this);
 
         initView();
 
+        mIcon.setImageDrawable(new IconicsDrawable(this)
+                .color(Color.WHITE)
+                .icon(MaterialDesignIconic.Icon.gmi_view_comfy)
+                .sizeDp(20));
+        mTtitlebar.setText("干货集中营");
         switchFragment("all");
+
+
     }
 
-
     public void  initView(){
-
-
-
 
         mAvatar = findViewById(R.id.avatar);
 
         // 获取Fragment管理器
         mFragmentManager = getSupportFragmentManager();
-
-
 
         mOptions = new RequestOptions().circleCrop()
                 .transforms(new CenterCrop(), new RoundedCorners(40));
@@ -91,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 .apply(mOptions)
                 .transition(withCrossFade())
                 .into(mAvatar);
+
+
 
 
 

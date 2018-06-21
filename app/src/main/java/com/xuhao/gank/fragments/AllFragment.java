@@ -16,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 import com.xuhao.gank.R;
 import com.xuhao.gank.adapter.Alladapter;
 import com.xuhao.gank.bean.GanHuo;
@@ -28,12 +30,15 @@ import com.xuhao.gank.http.HttpRespons;
 import com.xuhao.gank.http.RequstManger;
 import com.xuhao.gank.utils.ThemeUtils;
 
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllFragment  extends Fragment  {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class AllFragment  extends Fragment  {
 
     protected Alladapter mAlladapter;
 
@@ -71,12 +76,14 @@ public class AllFragment  extends Fragment  {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         initViews();
 
         initAdapter();
 
         loadData();
     }
+
 
 
     public String getUrl(){
@@ -87,7 +94,6 @@ public class AllFragment  extends Fragment  {
     }
 
     public void initViews(){
-
 
 
         mHandler = new MyHandler(this);

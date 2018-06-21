@@ -48,7 +48,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
 
-    // 标题栏
+    // 沉浸式标题栏
     implementation 'com.wuhenzhizao:titlebar:1.0.7'
 
    // implementation 'com.squareup.picasso:picasso:2.5.2'
