@@ -1,8 +1,10 @@
 package com.xuhao.gank.bean;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.io.Serializable;
 
-public class GanHuo implements Serializable {
+public class GanHuo implements Serializable, MultiItemEntity {
 
     /**
      * who : 有时放纵
@@ -26,6 +28,23 @@ public class GanHuo implements Serializable {
     private String createdAt;
     private String updatedAt;
     private int height;
+
+
+    public static final int TEXT = 1;
+    public static final int IMG = 2;
+    private int itemType;
+
+    @Override
+    public int getItemType() {
+        return itemType;
+    }
+
+
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
+    }
+
+
 
     public String getWho() {
         return who;

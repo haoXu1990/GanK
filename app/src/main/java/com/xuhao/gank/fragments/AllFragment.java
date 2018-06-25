@@ -46,8 +46,6 @@ public class AllFragment  extends Fragment  {
 
     protected RecyclerView mlistView;
 
-    protected MyHandler mHandler;
-
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     protected boolean mRefrshing = true;
@@ -55,6 +53,8 @@ public class AllFragment  extends Fragment  {
     protected int page = 1;
 
     protected int pageSize = 10;
+
+    protected String type = "all";
 
 
 
@@ -76,6 +76,7 @@ public class AllFragment  extends Fragment  {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        type = getTag();
 
         initViews();
 
@@ -88,15 +89,12 @@ public class AllFragment  extends Fragment  {
 
     public String getUrl(){
 
-        return "http://gank.io/api/data/福利/"
+        return "http://gank.io/api/data/" + type + "/"
                 + String.valueOf(pageSize) + "/"
                 + String.valueOf(page);
     }
 
     public void initViews(){
-
-
-        mHandler = new MyHandler(this);
 
         // 设置RecyclerView管理器
         mlistView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -106,8 +104,7 @@ public class AllFragment  extends Fragment  {
 
     public void initAdapter(){
 
-        mAlladapter = new Alladapter(R.layout.item_fuli, ganhuos);
-
+        mAlladapter = new Alladapter(ganhuos, getActivity());
 
         // 初始化时禁止下拉刷新
         mAlladapter.setEnableLoadMore(false);
@@ -156,11 +153,30 @@ public class AllFragment  extends Fragment  {
             @Override
             public void onSuccess(List<GanHuo> ganHuo) {
 
+
+                setViewTyep(ganHuo);
+
                 ganhuos = ganHuo;
 
-                mHandler.sendEmptyMessage(0);
+                onRefresh();
             }
         });
+    }
+
+    public void setViewTyep(List<GanHuo> ganHuo){
+
+
+        for (GanHuo huo : ganHuo) {
+
+            if (huo.getType().equals("福利")){
+                huo.setItemType(GanHuo.IMG);
+            }
+            else {
+                huo.setItemType(GanHuo.TEXT);
+            }
+        }
+
+
     }
 
 
@@ -194,32 +210,4 @@ public class AllFragment  extends Fragment  {
         view.setCompoundDrawablePadding(ConvertUtils.dp2px(5));
     }
 
-    static class MyHandler extends Handler {
-        WeakReference<AllFragment> weakReference;
-
-        public MyHandler(AllFragment hotfragment){
-
-            this.weakReference = new WeakReference<>(hotfragment);
-        }
-
-
-        @Override
-        public void handleMessage(Message msg) {
-
-            AllFragment allFragment = weakReference.get();
-
-            if (allFragment ==null){ return;}
-
-            switch (msg.what){
-
-                case 0:
-                    allFragment.onRefresh();
-                    break;
-                default:
-                    break;
-
-
-            }
-        }
-    }
 }

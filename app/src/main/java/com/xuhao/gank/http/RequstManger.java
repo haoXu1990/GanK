@@ -1,9 +1,11 @@
 package com.xuhao.gank.http;
 
 
-import com.xuhao.gank.bean.GanHuo;
+import android.os.Handler;
+import android.os.Looper;
 
 import java.io.IOException;
+
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -16,6 +18,10 @@ public class RequstManger {
 
     static RequstManger manger;
     static OkHttpClient client;
+
+    // 定义一个Hnader 用于线程切换, 这样在回掉代码出就可以直接更新UI
+    private static android.os.Handler mhander = new Handler(Looper.getMainLooper());
+
 
     private RequstManger() {
         client = new OkHttpClient();
@@ -53,12 +59,24 @@ public class RequstManger {
 
                 if (response.isSuccessful()){
 
-                    String data = response.body().string();
+                    final String data = response.body().string();
 
-                    respons.parse(data);
+                    mhander.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            respons.parse(data);
+                        };
+                    });
+
                 }
                 else {
-                    respons.onError("请求服务器失败");
+
+                    mhander.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            respons.onError("请求服务器失败");
+                        };
+                    });
                 }
             }
         });

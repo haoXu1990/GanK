@@ -22,7 +22,7 @@
             android:id="@+id/top_menu">
 
             <ImageView
-                android:id="@+id/avatar"
+                android:id="@+id/iv_main_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="25dp"
@@ -30,6 +30,7 @@
 
                 />
             <TextView
+                android:id="@+id/tv_main_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -113,9 +114,11 @@
             android:layout_marginBottom="20dp">
 
             <TextView
+                android:id="@+id/about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/MenuStyle"
+
                 android:text="关于"/>
 
         </LinearLayout>
