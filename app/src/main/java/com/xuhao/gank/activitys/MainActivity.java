@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<GanHuo> mGanhuos = new ArrayList<>();
 
-    private String typeStr = "all";
+    private String typeStr = "福利";
 
     // 管理器
     private FragmentManager mFragmentManager;
@@ -178,14 +178,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (foundFragment.isAdded()) {
-
             // 显示Fragment
             ft.show(foundFragment);
         }
         else {
-
             // 把找到的Fragment 放入到FragmentManger中
-            ft.add(R.id.container, foundFragment, name);
+            //ft.add(R.id.container, foundFragment, name);
+            ft.replace(R.id.container, foundFragment, name);
         }
 
         ft.commit();
@@ -194,12 +193,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.icon_titlebar, R.id.fuli, R.id.android, R.id.ios, R.id.video, R.id.front, R.id.resource})
+    @OnClick({R.id.icon_titlebar, R.id.all,R.id.fuli, R.id.android, R.id.ios, R.id.video, R.id.front, R.id.resource})
     public void onClick(View view){
 
         switch (view.getId()){
             case R.id.icon_titlebar:
                 mResideLayout.openPane();
+                break;
+            case R.id.all:
+                mResideLayout.closePane();
+                mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_mood).sizeDp(20));
+                mTtitlebar.setText("干货集中营");
+                switchFragment("all");
                 break;
             case R.id.fuli:
                 mResideLayout.closePane();

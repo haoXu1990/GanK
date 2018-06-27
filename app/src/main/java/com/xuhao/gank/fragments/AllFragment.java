@@ -1,12 +1,9 @@
 package com.xuhao.gank.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
-import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 import com.xuhao.gank.R;
 import com.xuhao.gank.adapter.Alladapter;
 import com.xuhao.gank.bean.GanHuo;
@@ -30,13 +25,8 @@ import com.xuhao.gank.http.HttpRespons;
 import com.xuhao.gank.http.RequstManger;
 import com.xuhao.gank.utils.ThemeUtils;
 
-
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AllFragment  extends Fragment  {
 

@@ -38,7 +38,6 @@ public class Alladapter extends BaseMultiItemQuickAdapter<GanHuo, BaseViewHolder
         super(data);
         this.mContext = context;
 
-
         addItemType(GanHuo.TEXT, R.layout.item_common);
         addItemType(GanHuo.IMG, R.layout.item_fuli);
 
